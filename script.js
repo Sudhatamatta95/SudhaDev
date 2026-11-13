@@ -202,9 +202,24 @@ document.getElementById('filters').addEventListener('click', e => {
 });
 
 // Hero counters
+// Hero counters
 document.querySelectorAll('[data-count]').forEach(el => {
-  const t = +el.dataset.count; let n = 0;
-  const iv = setInterval(() => { el.textContent = ++n; if (n >= t) clearInterval(iv); }, 200);
+  const target = Number(el.dataset.count) || 0;
+  let current = 0;
+
+  if (target === 0) {
+    el.textContent = 0;
+    return;
+  }
+
+  const interval = setInterval(() => {
+    current++;
+    el.textContent = current;
+
+    if (current >= target) {
+      clearInterval(interval);
+    }
+  }, 100);
 });
 
 // Scroll reveal (classes are removed afterwards so hover effects keep working)
