@@ -203,25 +203,16 @@ document.getElementById('filters').addEventListener('click', e => {
 
 // Hero counters
 // Hero counters
-document.querySelectorAll('[data-count]').forEach(el => {
-  const target = Number(el.dataset.count) || 0;
-  let current = 0;
+const techCount = document.getElementById('techCount');
+const projCount = document.getElementById('projCount');
 
-  if (target === 0) {
-    el.textContent = 0;
-    return;
-  }
+if (techCount) {
+    techCount.textContent = 7;
+}
 
-  const interval = setInterval(() => {
-    current++;
-    el.textContent = current;
-
-    if (current >= target) {
-      clearInterval(interval);
-    }
-  }, 100);
-});
-
+if (projCount) {
+    projCount.textContent = projects.length;
+}
 // Scroll reveal (classes are removed afterwards so hover effects keep working)
 const rv = new IntersectionObserver(es => es.forEach(e => {
   if (!e.isIntersecting) return;
